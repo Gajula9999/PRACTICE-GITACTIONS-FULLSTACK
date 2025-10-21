@@ -1,0 +1,55 @@
+/* Reset & base styles */
+:root {
+  font-family: "Roboto", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Default light theme */
+  color: #212529;
+  background-color: #f8f9fa;
+}
+
+/* Remove Vite's center alignment */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Links */
+a {
+  font-weight: 500;
+  color: #4e54c8;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #6c63ff;
+  text-decoration: underline;
+}
+
+/* Buttons (Bootstrap overrides if needed) */
+button {
+  border-radius: 8px;
+  border: none;
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}

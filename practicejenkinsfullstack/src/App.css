@@ -1,0 +1,62 @@
+/* Container overrides */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Card utility */
+.card {
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  background: #ffffff;
+}
+
+/* Navbar styles (works with Bootstrap classes) */
+.navbar {
+  background: linear-gradient(90deg, #4e54c8, #8f94fb);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white !important;
+  letter-spacing: 0.5px;
+}
+
+.nav-link {
+  color: white !important;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #ffe082 !important;
+}
+
+/* Headings */
+h2, h3 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+}
+
+/* Large dashboard buttons on Home page */
+.btn-lg {
+  min-width: 180px;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 12px;
+}
