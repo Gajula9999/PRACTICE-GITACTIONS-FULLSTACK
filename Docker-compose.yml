@@ -1,51 +1,37 @@
-version: '3.8'
-
 services:
   mysqldb:
     image: mysql:8
     container_name: mysql-db
     environment:
+      
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: instadb
+      MYSQL_DATABASE: instadb   # changed here
     ports:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
       - springboot-mysql-net
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 15s   # wait before checking
 
   backend:
     image: gajula9999/docker-backend:latest
     container_name: springboot
-    depends_on:
-      mysqldb:
-        condition: service_healthy   # <--- waits for MySQL healthcheck
-    restart: on-failure
     ports:
       - "2025:2000"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/instadb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_JPA_SHOW_SQL: "true"
+    depends_on:
+      - mysqldb
+    restart: on-failure
     networks:
       - springboot-mysql-net
 
   frontend:
     image: gajula9999/docker-frontend:latest
     container_name: react
+    ports:
+      - "3000:80"
     depends_on:
       - backend
     restart: on-failure
-    ports:
-      - "3000:80"
     networks:
       - springboot-mysql-net
 
