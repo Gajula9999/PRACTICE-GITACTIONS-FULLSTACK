@@ -13,17 +13,24 @@ services:
       - mysql_data:/var/lib/mysql
     networks:
       - springboot-mysql-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s   # wait before checking
 
   backend:
     image: gajula9999/docker-backend:latest
     container_name: springboot
     depends_on:
-      - mysqldb
+      mysqldb:
+        condition: service_healthy   # <--- waits for MySQL healthcheck
     restart: on-failure
     ports:
       - "2025:2000"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/instadb
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/instadb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
